@@ -6,14 +6,14 @@
     Um incrível script Python para download das guias de IPVA/PR.
     <br/>
     <br/>
-    <a href="https://github.com/lfeabreu/ipva-pr-download-guias/issues">Report Bug</a>
+    <a href="https://github.com/lfeabreu/ipva-pr-download-guias/issues">Reportar um Bug</a>
     .
   </p>
 </p>
 
 
 
-## About The Project
+## Sobre o Projeto
 
 Estes dias me deparei com um problema para nossa área: baixar todas as guias de pagamento dos IPVAs de quase 2.000 veículos.
 
@@ -27,14 +27,11 @@ Então, usando uma API de OCR para passar o CAPTCHA, a biblioteca Selenium e out
 
 O resultado: baixamos todas as guias em 2 dias (isso porque a API demorava um pouco para dar o retorno do OCR e, muitas vezes ainda errava).
 
-### Creating A Pull Request
 
+## Licença
 
+Distribuído sob a "MIT License". Veja [LICENSE](https://github.com/lfeabreu/ipva-pr-download-guias/blob/main/LICENSE.md) para mais informações.
 
-## License
-
-Distributed under the MIT License. See [LICENSE](https://github.com/lfeabreu/ipva-pr-download-guias/blob/main/LICENSE.md) for more information.
-
-## Authors
+## Autores
 
 * **Luís Filipe de Abreu** - *Dados | BI | SQL | ETL | Software Developer/Engineer* - [Luís Filipe de Abreu](https://github.com/lfeabreu/)
