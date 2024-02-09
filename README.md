@@ -34,4 +34,4 @@ Distribuído sob a "MIT License". Veja [LICENSE](https://github.com/lfeabreu/ipv
 
 ## Autores
 
-* **Luís Filipe de Abreu** - *Dados | BI | SQL | ETL | Software Developer/Engineer* - [Luís Filipe de Abreu](https://github.com/lfeabreu/)
+* **[Luís Filipe de Abreu](https://github.com/lfeabreu/)** - *Dados | BI | SQL | ETL | Software Developer/Engineer*
