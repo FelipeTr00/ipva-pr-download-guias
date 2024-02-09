@@ -30,7 +30,7 @@ O resultado: baixamos todas as guias em 2 dias (isso porque a API demorava um po
 
 ## Licença
 
-Distribuído sob a "MIT License". Veja [LICENSE](https://github.com/lfeabreu/ipva-pr-download-guias/LICENSE) para mais informações.
+Distribuído sob a "MIT License". Veja [LICENSE](https://github.com/lfeabreu/ipva-pr-download-guias/blob/main/LICENSE) para mais informações.
 
 ## Autores
 
