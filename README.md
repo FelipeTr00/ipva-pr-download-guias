@@ -5,6 +5,7 @@
   <p align="center">
     Um incrível script Python para download das guias de IPVA/PR.
     <br/>
+    Veja o vídeo sobre ele [neste post](https://www.linkedin.com/feed/update/urn:li:activity:7152846415482781696/) do LinkedIn.
     <br/>
     <a href="https://github.com/lfeabreu/ipva-pr-download-guias/issues">Reportar um Bug</a>
     .
