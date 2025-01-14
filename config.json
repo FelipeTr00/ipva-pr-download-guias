@@ -1,0 +1,12 @@
+{
+    "url_base": "https://www.contribuinte.fazenda.pr.gov.br/ipva/faces",
+    "file_path": "C:/Users/mrs/Documents/Dev/ipva/ipva-pr-download-guias/0_IPVA_PR.xlsx",
+    "sheet": "Dados",
+    "download_folder": "C:/Users/mrs/Downloads",
+    "element_ids": {
+      "renavam_input": "pt1:r1:0:r2:0:ig1:it1::content",
+      "consultar_button": "pt1:r1:0:r2:0:ig1:b11",
+      "resultado_page": "pt1:r1:0:tbCu:0:lnkCu",
+      "download_button": "pt1:r1:0:tbCu:0:lnkCu"
+    }
+  }
