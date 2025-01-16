@@ -6,7 +6,7 @@ from webDriverConf import configure_driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
 
 # Config env
 config = json.load(open('config.json'))
@@ -24,6 +24,22 @@ download_button_id = element_ids['download_button']
 
 # WebDriver
 driver = configure_driver()
+
+def wait_for_page_load(driver, timeout=30):
+    """
+    Aguarda até que a página tenha terminado de carregar.
+    """
+    WebDriverWait(driver, timeout).until(
+        lambda d: d.execute_script("return document.readyState") == "complete"
+    )
+
+def wait_for_element(driver, by, value, timeout=90):
+    """
+    Aguarda até que um elemento esteja presente e estável no DOM.
+    """
+    return WebDriverWait(driver, timeout).until(
+        EC.presence_of_element_located((by, value))
+    )
 
 # Main
 def main():
@@ -44,43 +60,44 @@ def main():
 
             print("[INFO] Acessando Home.")
             driver.get(url_base + "/home")
+            wait_for_page_load(driver)
 
             try:
                 print("[DEBUG] Aguardando o campo Renavam.")
-                renavam_input = WebDriverWait(driver, 90).until(
-                    EC.presence_of_element_located((By.ID, renavam_input_id))
-                )
+                renavam_input = wait_for_element(driver, By.ID, renavam_input_id)
                 renavam_input.clear()
                 renavam_input.send_keys(renavam)
                 print("[INFO] Renavam preenchido.")
-            except TimeoutException:
-                print("[ERROR] Não foi possível localizar o campo Renavam.")
-                continue
 
-            try:
-                print("[DEBUG] Localizando o botão CONSULTAR.")
-                consultar_button = WebDriverWait(driver, 90).until(
-                    EC.element_to_be_clickable((By.ID, consultar_button_id))
-                )
+                # Aguarda botão "Consultar" e clica
+                print("[DEBUG] Aguardando botão Consultar.")
+                consultar_button = wait_for_element(driver, By.ID, consultar_button_id)
                 consultar_button.click()
-                print("[INFO] Botão CONSULTAR clicado com sucesso.")
-            except TimeoutException:
-                print("[ERROR] Não foi possível clicar no botão CONSULTAR.")
-                continue
+                print("[INFO] Consulta enviada.")
 
-            try:
-                print("[DEBUG] Aguardando o botão de download.")
-                download_button = WebDriverWait(driver, 90).until(
-                    EC.element_to_be_clickable((By.ID, download_button_id))
-                )
+                # Aguarda botão de download e clica
+                print("[DEBUG] Aguardando botão Download.")
+                download_button = wait_for_element(driver, By.ID, download_button_id)
                 download_button.click()
-                print("[INFO] Botão de download clicado com sucesso.")
-            except TimeoutException:
-                print("[ERROR] Não foi possível localizar ou clicar no botão de download.")
-                continue
+                print("[INFO] Download iniciado.")
 
-    except Exception as e:
-        print(f"[ERROR] Um erro inesperado ocorreu: {e}")
+                # Aguarda tempo para garantir o download
+                time.sleep(5)
+
+            except TimeoutException as e:
+                print(f"[ERROR] Tempo excedido ao processar: {e}")
+                continue
+            except StaleElementReferenceException as e:
+                print(f"[ERROR] Elemento recriado, tentando novamente: {e}")
+                # Tenta localizar o elemento novamente
+                try:
+                    renavam_input = wait_for_element(driver, By.ID, renavam_input_id)
+                    renavam_input.clear()
+                    renavam_input.send_keys(renavam)
+                except Exception as retry_error:
+                    print(f"[ERROR] Falha ao tentar novamente: {retry_error}")
+                    continue
+
     finally:
         print("[INFO] Finalizando o WebDriver.")
         driver.quit()
