@@ -70,7 +70,8 @@ py main.py
 ---
 ### Licença
 
-### Distribuído sob a "MIT License".
+### Distribuído sob a ["MIT License"](/LICENSE.txt).
+
 ---
 
 ### Enjoy 🎵
